@@ -3,10 +3,7 @@ package com.apiflows.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.models.Operation;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Step {
 
@@ -19,7 +16,7 @@ public class Step {
     private Workflow workflow;
     private List<Parameter> parameters = new ArrayList<>();
 
-    private RequestBody requestBody;
+    private Optional<RequestBody> requestBody = Optional.empty();
     private String dependsOn;
     private List<Criterion> successCriteria = new ArrayList<>();
     private Map<String, String> outputs = new HashMap<>();
@@ -184,16 +181,16 @@ public class Step {
         return this;
     }
 
-    public RequestBody getRequestBody() {
+    public Optional<RequestBody> getRequestBody() {
         return requestBody;
     }
 
     public void setRequestBody(RequestBody requestBody) {
-        this.requestBody = requestBody;
+        this.requestBody = Optional.ofNullable(requestBody);
     }
 
     public Step requestBody(RequestBody requestBody) {
-        this.requestBody = requestBody;
+        this.requestBody = Optional.ofNullable(requestBody);
         return this;
     }
 

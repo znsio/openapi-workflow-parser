@@ -1,6 +1,8 @@
 package com.apiflows.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.swagger.v3.core.util.ModelDeserializer;
 import io.swagger.v3.oas.models.media.Schema;
 
 import java.util.ArrayList;
@@ -13,9 +15,10 @@ public class Workflow {
     private String workflowId;
     private String summary;
     private String description;
+    @JsonDeserialize(using = ModelDeserializer.class)
     private Schema inputs;
 
-    private String dependsOn;
+    private List<String> dependsOn;
 
     private List<Parameter> parameters = new ArrayList<>();
     private List<SuccessAction> successActions = new ArrayList<>();
@@ -102,11 +105,11 @@ public class Workflow {
         return this;
     }
 
-    public String getDependsOn() {
+    public List<String> getDependsOn() {
         return dependsOn;
     }
 
-    public void setDependsOn(String dependsOn) {
+    public void setDependsOn(List<String> dependsOn) {
         this.dependsOn = dependsOn;
     }
 

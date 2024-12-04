@@ -176,7 +176,8 @@
                 <executions>
                     <execution>
                         <id>sign-artifacts</id>
-                        <phase>verify</phase>
+                        <!-- TODO: Change phase back to verify -->
+                        <phase>none</phase>
                         <goals>
                             <goal>sign</goal>
                         </goals>
