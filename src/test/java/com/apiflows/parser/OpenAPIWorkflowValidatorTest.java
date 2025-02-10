@@ -266,7 +266,7 @@ class OpenAPIWorkflowValidatorTest {
     }
 
     @Test
-    void validateSuccessAction() {
+    void validateInvalidSuccessAction() {
         String workflowId = "w1";
         String stepId = "step-one";
 
@@ -278,7 +278,7 @@ class OpenAPIWorkflowValidatorTest {
                 new Criterion()
                         .context("$statusCode == 200"));
 
-        assertEquals(0, validator.validateSuccessAction(workflowId, stepId, successAction).size());
+        assertEquals(1, validator.validateSuccessAction(workflowId, stepId, successAction).size());
     }
 
     @Test
@@ -298,7 +298,7 @@ class OpenAPIWorkflowValidatorTest {
     }
 
     @Test
-    void validateSuccessActionMissingEntity() {
+    void validateSuccessActionValidEntity() {
         String workflowId = "w1";
         String stepId = "step-one";
 
@@ -311,7 +311,7 @@ class OpenAPIWorkflowValidatorTest {
                 new Criterion()
                         .context("$statusCode == 200"));
 
-        assertEquals(1, validator.validateSuccessAction(workflowId, stepId, successAction).size());
+        assertEquals(0, validator.validateSuccessAction(workflowId, stepId, successAction).size());
     }
 
     @Test
@@ -401,7 +401,7 @@ class OpenAPIWorkflowValidatorTest {
     }
 
     @Test
-    void validateFailureAction() {
+    void validateInvalidFailureAction() {
         String workflowId = "w1";
         String stepId = "step-one";
 
@@ -415,7 +415,7 @@ class OpenAPIWorkflowValidatorTest {
                 new Criterion()
                         .context("$statusCode == 200"));
 
-        assertEquals(0, validator.validateFailureAction(workflowId, stepId, failureAction).size());
+        assertEquals(1, validator.validateFailureAction(workflowId, stepId, failureAction).size());
     }
 
     @Test
@@ -451,7 +451,7 @@ class OpenAPIWorkflowValidatorTest {
                 new Criterion()
                         .context("$statusCode == 200"));
 
-        assertEquals(2, validator.validateFailureAction(workflowId, stepId, failureAction).size());
+        assertEquals(3, validator.validateFailureAction(workflowId, stepId, failureAction).size());
     }
 
     @Test

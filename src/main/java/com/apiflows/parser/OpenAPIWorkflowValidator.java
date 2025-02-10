@@ -299,6 +299,15 @@ public class OpenAPIWorkflowValidator {
             }
         }
 
+        if("end".equals(successAction.getType())) {
+            // when type `end` stepId or workflowId must not be provided
+            if (successAction.getWorkflowId() != null || successAction.getStepId() != null) {
+                errors.add("Step " + stepId + " SuccessAction of typ End must not define workflowId or stepId");
+            }
+
+            return errors;
+        }
+
         if(successAction.getWorkflowId() == null && successAction.getStepId() == null) {
             errors.add("Step " + stepId + " SuccessAction must define either workflowId or stepId");
         }
@@ -339,14 +348,6 @@ public class OpenAPIWorkflowValidator {
             }
         }
 
-        if(failureAction.getWorkflowId() == null && failureAction.getStepId() == null) {
-            errors.add("Step " + stepId + " FailureAction must define either workflowId or stepId");
-        }
-
-        if(failureAction.getWorkflowId() != null && failureAction.getStepId() != null) {
-            errors.add("Step " + stepId + " FailureAction cannot define both workflowId and stepId");
-        }
-
         if(failureAction.getRetryAfter() != null && failureAction.getRetryAfter() < 0) {
             errors.add("Step " + stepId + " FailureAction retryAfter must be non-negative");
 
@@ -355,6 +356,23 @@ public class OpenAPIWorkflowValidator {
         if(failureAction.getRetryLimit() != null && failureAction.getRetryLimit() < 0) {
             errors.add("Step " + stepId + " FailureAction retryLimit must be non-negative");
 
+        }
+
+        if("end".equals(failureAction.getType())) {
+            // when type `end` stepId or workflowId must not be provided
+            if (failureAction.getWorkflowId() != null || failureAction.getStepId() != null) {
+                errors.add("Step " + stepId + " SuccessAction of typ End must not define workflowId or stepId");
+            }
+
+            return errors;
+        }
+
+        if(failureAction.getWorkflowId() == null && failureAction.getStepId() == null) {
+            errors.add("Step " + stepId + " FailureAction must define either workflowId or stepId");
+        }
+
+        if(failureAction.getWorkflowId() != null && failureAction.getStepId() != null) {
+            errors.add("Step " + stepId + " FailureAction cannot define both workflowId and stepId");
         }
 
         if(failureAction.getStepId() != null && failureAction.getType() != null
