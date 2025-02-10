@@ -1,7 +1,5 @@
 package com.apiflows.model;
 
-import io.swagger.v3.oas.models.media.IntegerSchema;
-
 import java.util.ArrayList;
 import java.util.List;
 
