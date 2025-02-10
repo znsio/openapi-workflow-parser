@@ -16,7 +16,7 @@ public class Step {
     private Workflow workflow;
     private List<Parameter> parameters = new ArrayList<>();
 
-    private Optional<RequestBody> requestBody = Optional.empty();
+    private RequestBody requestBody;
     private String dependsOn;
     private List<Criterion> successCriteria = new ArrayList<>();
     private Map<String, String> outputs = new HashMap<>();
@@ -181,16 +181,14 @@ public class Step {
         return this;
     }
 
-    public Optional<RequestBody> getRequestBody() {
-        return requestBody;
-    }
+    public Optional<RequestBody> getRequestBody() { return Optional.ofNullable(requestBody); }
 
     public void setRequestBody(RequestBody requestBody) {
-        this.requestBody = Optional.ofNullable(requestBody);
+        this.requestBody = requestBody;
     }
 
     public Step requestBody(RequestBody requestBody) {
-        this.requestBody = Optional.ofNullable(requestBody);
+        this.requestBody = requestBody;
         return this;
     }
 
