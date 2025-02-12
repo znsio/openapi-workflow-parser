@@ -1,5 +1,6 @@
 package com.apiflows.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class SourceDescription {
@@ -35,10 +36,12 @@ public class SourceDescription {
         this.type = type;
     }
 
+    @JsonIgnore
     public boolean isOpenApi() {
         return "openapi".equals(this.type);
     }
 
+    @JsonIgnore
     public boolean isArazzo() {
         return "arazzo".equals(this.type);
     }

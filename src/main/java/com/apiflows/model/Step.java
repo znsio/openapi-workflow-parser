@@ -181,7 +181,9 @@ public class Step {
         return this;
     }
 
-    public Optional<RequestBody> getRequestBody() { return Optional.ofNullable(requestBody); }
+    public RequestBody getRequestBody() {
+        return requestBody;
+    }
 
     public void setRequestBody(RequestBody requestBody) {
         this.requestBody = requestBody;
