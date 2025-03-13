@@ -361,13 +361,13 @@ public class OpenAPIWorkflowValidator {
         if("end".equals(failureAction.getType())) {
             // when type `end` stepId or workflowId must not be provided
             if (failureAction.getWorkflowId() != null || failureAction.getStepId() != null) {
-                errors.add("Step " + stepId + " SuccessAction of typ End must not define workflowId or stepId");
+                errors.add("Step " + stepId + " FailureAction of type End must not define workflowId or stepId");
             }
 
             return errors;
         }
 
-        if(failureAction.getWorkflowId() == null && failureAction.getStepId() == null) {
+        if (!failureAction.getType().equals("retry") && failureAction.getWorkflowId() == null && failureAction.getStepId() == null) {
             errors.add("Step " + stepId + " FailureAction must define either workflowId or stepId");
         }
 

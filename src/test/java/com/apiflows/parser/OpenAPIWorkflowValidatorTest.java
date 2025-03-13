@@ -470,7 +470,7 @@ class OpenAPIWorkflowValidatorTest {
                 new Criterion()
                         .context("$statusCode == 200"));
 
-        assertEquals(1, validator.validateFailureAction(workflowId, stepId, failureAction).size());
+        assertEquals(0, validator.validateFailureAction(workflowId, stepId, failureAction).size());
     }
 
     @Test
