@@ -1,13 +1,16 @@
 package com.apiflows.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.swagger.v3.core.util.ModelDeserializer;
 import io.swagger.v3.oas.models.media.Schema;
-
 import java.util.HashMap;
 import java.util.Map;
 
 public class Components {
 
+    @JsonProperty("inputs")
+    @JsonDeserialize(keyAs = String.class, contentUsing = ModelDeserializer.class)
     private Map<String, Schema> inputs = new HashMap<>();
     private Map<String, Parameter> parameters = new HashMap<>();
     private Map<String, SuccessAction> successActions = new HashMap<>();
