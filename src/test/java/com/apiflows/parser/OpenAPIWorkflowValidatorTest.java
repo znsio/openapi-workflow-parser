@@ -394,7 +394,7 @@ class OpenAPIWorkflowValidatorTest {
 
         Criterion criterion = new Criterion()
                 .condition("$statusCode == 200")
-                .type("simple")
+                .type("xpath")
                 .context(null);
 
         assertEquals(1, validator.validateCriterion(criterion, stepId).size());

@@ -400,8 +400,8 @@ public class OpenAPIWorkflowValidator {
             errors.add("Step " + stepId + " SuccessCriteria type (" + criterion.getType() + ") is invalid");
         }
 
-        if (criterion.getType() != null && criterion.getContext() == null) {
-            errors.add("Step " + stepId + " SuccessCriteria type is specified but context is not provided");
+        if (criterion.getType() != null && !criterion.getType().equals("simple") && criterion.getContext() == null) {
+            errors.add("Step " + stepId + " Non Simple SuccessCriteria type is specified but context is not provided");
         }
 
         return errors;
